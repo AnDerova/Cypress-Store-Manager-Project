@@ -106,7 +106,7 @@ describe("Registration Page Tests", () => {
     registrationPage.getErrorMessage().should('be.visible');
   });
 
-  it("Display an error message when registering with a 51-character username", () => {
+  it.only("Display an error message when registering with a 51-character username", () => {
     const email = faker.internet.email().toLowerCase();
     registrationPage
       .verifyRegistrationForm()
