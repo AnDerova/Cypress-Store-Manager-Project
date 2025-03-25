@@ -51,10 +51,6 @@ class RegistrationPage {
         return this;
   }
 
-//   clickRegisterButton() {
-//     this.getRegisterButton().click();
-//     return LoginPage;
-//   }
 
   clickRegisterButton() {
     this.getRegisterButton().click();
@@ -63,7 +59,7 @@ class RegistrationPage {
 
   clickLoginLink() {
     this.getLoginLink().click();
-    return LoginPage;
+    return new LoginPage();
   }
 
   clearFields() {
