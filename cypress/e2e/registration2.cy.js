@@ -1,15 +1,14 @@
 import { faker } from "@faker-js/faker";
 import RegistrationPage from "../PageObject/RegistrationPage";
-import LoginPage from "../PageObject/LoginPage";
 
 const registrationPage = new RegistrationPage();
-const loginPage = new LoginPage();
 
 describe("Registration Page Tests", () => {
   let validUserName, validEmail, validPassword;
   let invalidCases;
 
   beforeEach(() => {
+    cy.log("Running beforeEach hook");
     cy.visit("http://localhost:8000/register/");
 
     validUserName = faker.lorem.word();
@@ -64,21 +63,25 @@ describe("Registration Page Tests", () => {
         password: validPassword,
       },
     ];
+
+    cy.log("invalidCases initialized:", invalidCases);
   });
 
-  invalidCases.forEach(({ case: testCase, userName, email, password }) => {
-    it(`Should display an error message for ${testCase}`, () => {
-      cy.log(`Testing case: ${testCase}`);
+  it("Should run tests for invalid cases", () => {
+    if (invalidCases && Array.isArray(invalidCases)) {
+      invalidCases.forEach(({ case: testCase, userName, email, password }) => {
+        cy.log(`Running test for case: ${testCase}`);
 
-      registrationPage
-        // .verifyRegistrationForm()
-        .typeUserName(userName)
-        .typeEmail(email)
-        .typePassword(password)
-        .clickRegisterButton();
+        registrationPage
+          .typeUserName(userName)
+          .typeEmail(email)
+          .typePassword(password)
+          .clickRegisterButton();
 
-      // Проверяем, что ошибка отображается
-    //   registrationPage.getErrorMessage().should("be.visible");
-    });
+        //registrationPage.getErrorMessage().should("be.visible");
+      });
+    } else {
+      throw new Error("invalidCases is not defined or is not an array");
+    }
   });
 });
