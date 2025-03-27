@@ -51,19 +51,15 @@ class RegistrationPage {
         return this;
   }
 
-//   clickRegisterButton() {
-//     this.getRegisterButton().click();
-//     return LoginPage;
-//   }
 
   clickRegisterButton() {
     this.getRegisterButton().click();
-    return cy.wrap(this); // Теперь можно использовать `.then()`
+    return cy.wrap(this);
 }
 
   clickLoginLink() {
     this.getLoginLink().click();
-    return LoginPage;
+    return new LoginPage();
   }
 
   clearFields() {
