@@ -1,12 +1,15 @@
 /// <reference types="cypress" />
 
 import ProfilePage from "./ProfilePage";
+import RegistrationPage from "./RegistrationPage";
 
 class LoginPage {
   getEmail = () => cy.get('[type="email"]');
   getPassword = () => cy.get('[type="password"]');
   getRememberMeCheckbox = () => cy.get('[id="rememberMe"]');
   getSubmitButton = () => cy.get('[type="submit"]');
+  getRegisterButton = () => cy.get('[href="/register"]');
+  getErrorMessage = () => cy.get('#errorMessage');
 
   verifyLoginForm() {
     cy.url().should("include", "/login");
@@ -35,6 +38,16 @@ class LoginPage {
     this.getSubmitButton().click();
     return new ProfilePage();
   };
+
+  clickSubmitButtonWithoutRedirect() {
+    this.getSubmitButton().click();
+    return this;
+  }
+
+  clickRegisterButton() {
+    this.getRegisterButton().click();
+    return new RegistrationPage();
+  }
 
 };
 

@@ -54,7 +54,7 @@ class RegistrationPage {
 
   clickRegisterButton() {
     this.getRegisterButton().click();
-    return cy.wrap(this); // Теперь можно использовать `.then()`
+    return cy.wrap(this);
 }
 
   clickLoginLink() {
