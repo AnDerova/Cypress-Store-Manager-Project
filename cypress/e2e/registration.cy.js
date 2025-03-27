@@ -10,7 +10,10 @@ describe("Registration Page Tests", () => {
   let validUserName, validEmail, validPassword;
 
   beforeEach(() => {
+
     cy.visit("/register");
+=======
+ 
 
     validUserName = faker.person.firstName();
     validEmail = faker.internet.email().toLowerCase();
